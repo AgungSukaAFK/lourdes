@@ -1,22 +1,55 @@
+import Image from "next/image";
+import { images } from "@/lib/images";
+import { categories, site, yearsOfExperience } from "@/lib/site";
+
+const stats = [
+  { value: `${yearsOfExperience}+`, label: "Tahun Pengalaman" },
+  { value: "2.000+", label: "Jenis Suku Cadang" },
+  { value: `${categories.length}`, label: "Kategori Produk" },
+  { value: "3", label: "Sektor Industri" },
+];
+
 export default function Hero() {
+  const hero = images["hero-mining-trucks"];
+
   return (
-    <section className="hero">
-      <div className="container">
-        <p className="eyebrow">Sejak 2010</p>
-        <h1>Mitra Terpercaya untuk Pertumbuhan Bisnis Anda</h1>
-        <p>
-          PT XYZ menghadirkan solusi bisnis terintegrasi — dari konsultasi,
-          teknologi, hingga operasional — untuk membantu perusahaan berkembang
-          secara berkelanjutan.
+    <section className="hero" aria-labelledby="hero-title">
+      <Image
+        src={hero.src}
+        alt={hero.alt}
+        fill
+        preload
+        placeholder="blur"
+        sizes="100vw"
+        className="hero-bg"
+      />
+      <div className="hero-overlay" />
+      <div className="container hero-content">
+        <p className="eyebrow">Sejak {site.foundingYear} · Seluruh Indonesia</p>
+        <h1 id="hero-title">
+          {site.name}: <span>{site.tagline}</span>
+        </h1>
+        <p className="hero-lead">
+          Penyedia pengalaman pelanggan terbaik dalam produk dan layanan
+          kelistrikan otomotif untuk industri pertambangan, kehutanan, serta
+          minyak &amp; gas.
         </p>
         <div className="hero-actions">
-          <a href="#kontak" className="btn btn-primary">
+          <a href="#produk" className="btn btn-primary">
+            Lihat Produk
+          </a>
+          <a href="#kontak" className="btn btn-outline">
             Hubungi Kami
           </a>
-          <a href="#layanan" className="btn btn-outline">
-            Lihat Layanan
-          </a>
         </div>
+        <dl className="hero-stats">
+          {stats.map((s) => (
+            <div key={s.label}>
+              <dt>{s.label}</dt>
+              <dd>{s.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

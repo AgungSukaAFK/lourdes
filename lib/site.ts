@@ -1,5 +1,5 @@
 export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.lourdesautoparts.com"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.lourdes.cloud"
 ).replace(/\/$/, "");
 
 export const site = {
